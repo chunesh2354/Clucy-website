@@ -17,7 +17,13 @@ npm run build      # type-check, then build to dist/
 npm run preview    # serve the built site from dist/
 ```
 
-`dist/` is a plain static site with relative paths, so it can be hosted anywhere (GitHub Pages, Netlify, Cloudflare Pages, any web server). Hosting and domain are not chosen yet.
+`dist/` is a plain static site with relative paths. It is hosted on AWS (private S3 bucket behind CloudFront) at **clucy.csdv.in**:
+
+```bash
+AWS_PROFILE=csdv npm run deploy:aws
+```
+
+Setup, DNS records and permissions: [docs/hosting.md](docs/hosting.md).
 
 ## Project layout
 
@@ -46,7 +52,10 @@ src/
     tokens.css             brand tokens (colour, type scale, grid, motion)
     base.css               base elements, header, chapter rail, labels
     chapters.css           the chapters and their panels, phone layout
+scripts/
+  deploy-aws.sh            build and publish to S3 + CloudFront (safe to re-run)
 docs/
+  hosting.md               AWS hosting: setup, DNS records, permissions
   concept.md               the approved concept, chapter by chapter
   brand.md                 how the Clucy brand rules apply to this site
 ```
@@ -75,6 +84,6 @@ These come from Clucy's own rules and apply to every word and picture on the sit
 ## Status
 
 - Early-access button is a placeholder until a form service or contact address is chosen.
-- No deployment is set up yet.
+- AWS hosting is scripted; the first deploy waits for S3 to be allowed in the AWS account.
 
 © 2026 Clucy. All rights reserved.
