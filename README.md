@@ -17,13 +17,12 @@ npm run build      # type-check, then build to dist/
 npm run preview    # serve the built site from dist/
 ```
 
-`dist/` is a plain static site with relative paths. It is hosted on AWS (private S3 bucket behind CloudFront) at **clucy.csdv.in**:
+`dist/` is a plain static site with relative paths, live at **https://clucy.csdv.in**.
 
-```bash
-AWS_PROFILE=csdv npm run deploy:aws
-```
+- **Now: GitHub Pages.** Every push to `main` builds and publishes the site (`.github/workflows/deploy-pages.yml`). The domain is set in `public/CNAME`.
+- **Later: AWS** (private S3 bucket behind CloudFront), once S3 is allowed in the AWS account: `AWS_PROFILE=csdv npm run deploy:aws`.
 
-Setup, DNS records and permissions: [docs/hosting.md](docs/hosting.md).
+Setup, DNS records and permissions for both: [docs/hosting.md](docs/hosting.md).
 
 ## Project layout
 
@@ -31,6 +30,7 @@ Setup, DNS records and permissions: [docs/hosting.md](docs/hosting.md).
 index.html                 all page copy, as real HTML (readable without 3D, by screen readers and search)
 public/
   favicon.svg              brand favicon (small cut of the Room)
+  CNAME                    custom domain for GitHub Pages
 src/
   main.ts                  entry: loads fonts and styles, starts the scene, wires the page behaviours
   scroll/
@@ -52,6 +52,8 @@ src/
     tokens.css             brand tokens (colour, type scale, grid, motion)
     base.css               base elements, header, chapter rail, labels
     chapters.css           the chapters and their panels, phone layout
+.github/workflows/
+  deploy-pages.yml         build and publish to GitHub Pages on every push to main
 scripts/
   deploy-aws.sh            build and publish to S3 + CloudFront (safe to re-run)
 docs/
@@ -84,6 +86,6 @@ These come from Clucy's own rules and apply to every word and picture on the sit
 ## Status
 
 - Early-access button is a placeholder until a form service or contact address is chosen.
-- AWS hosting is scripted; the first deploy waits for S3 to be allowed in the AWS account.
+- Hosted on GitHub Pages. The AWS route is scripted and waits for S3 to be allowed in the AWS account.
 
 © 2026 Clucy. All rights reserved.
