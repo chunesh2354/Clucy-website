@@ -1,0 +1,26 @@
+{
+  "name": "clucy-website",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Public landing page for Clucy, the standards-driven AI design partner for architects.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/geist": "5.3.0",
+    "@fontsource/geist-mono": "5.3.0",
+    "three": "0.170.0"
+  },
+  "devDependencies": {
+    "@types/three": "0.170.0",
+    "typescript": "5.6.3",
+    "vite": "5.4.11"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

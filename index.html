@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Clucy · AI design partner for architects</title>
+  <meta name="description" content="Clucy is an AI design partner for architects. It works beside Revit, Rhino, Grasshopper and Illustrator, reasons about space, shows the source of every number, and changes nothing until you approve.">
+  <meta name="theme-color" content="#15140F">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Clucy · AI design partner for architects">
+  <meta property="og:description" content="Points are facts. Lines are rules. Space is the result. Clucy reasons about space and changes nothing until you approve.">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <!-- Brand marks, defined once (shapes from the Clucy brand kit v1.0) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="clucy-room" viewBox="0 0 48 48"><path d="M38 18V10H10v28h28v-8" fill="none" stroke="currentColor" stroke-width="8"/></symbol>
+    <symbol id="clucy-word" viewBox="42 -726 2770.6 876"><path fill="currentColor" d="M375.4 16Q278 16 202.7 -28.2Q127.4 -72.4 84.7 -155.1Q42 -237.8 42 -354Q42 -467.2 83.2 -550.7Q124.4 -634.2 200 -680.1Q275.6 -726 377.8 -726Q517 -726 594.3 -657.4Q671.6 -588.8 694.2 -462.4L536 -455.8Q524 -522.8 484 -560.5Q444 -598.2 377.8 -598.2Q321.2 -598.2 281.1 -567.9Q241 -537.6 219.8 -482.7Q198.6 -427.8 198.6 -354Q198.6 -279 220.4 -224.6Q242.2 -170.2 282.3 -141Q322.4 -111.8 376.6 -111.8Q448.6 -111.8 488.2 -152.5Q527.8 -193.2 538.4 -265.4L697.2 -258.8Q683 -172.2 642 -110.9Q601 -49.6 534.3 -16.8Q467.6 16 375.4 16Z M894.6 0Q829.4 0 792 -33Q754.6 -66 754.6 -139.6V-710H904.6V-155.6Q904.6 -132.4 915.8 -122.1Q927 -111.8 947.8 -111.8H983.6V0Z M1199 12Q1116.4 12 1069.5 -41.5Q1022.6 -95 1022.6 -190.8V-536H1172.6V-226.4Q1172.6 -164.4 1192 -135.7Q1211.4 -107 1252.2 -107Q1298.4 -107 1323.6 -138.5Q1348.8 -170 1348.8 -233.2V-536H1498.8V0H1362.4L1358.2 -154.4L1376.6 -150.4Q1365.4 -69.8 1320.4 -28.9Q1275.4 12 1199 12Z M1828.2 12Q1745.8 12 1684.7 -22.6Q1623.6 -57.2 1589.7 -120.3Q1555.8 -183.4 1555.8 -268Q1555.8 -352.6 1589.7 -415.2Q1623.6 -477.8 1684.7 -512.9Q1745.8 -548 1828.2 -548Q1899.4 -548 1955.6 -522.9Q2011.8 -497.8 2046.9 -451.1Q2082 -404.4 2089.8 -338.2L1935.2 -331Q1928 -381 1899.4 -406.5Q1870.8 -432 1828.2 -432Q1772 -432 1741.2 -388.8Q1710.4 -345.6 1710.4 -268Q1710.4 -189.8 1741.2 -146.6Q1772 -103.4 1828.2 -103.4Q1871.4 -103.4 1900.3 -129.5Q1929.2 -155.6 1935.2 -210.2L2089.8 -204.2Q2082.6 -138 2048.1 -89.4Q2013.6 -40.8 1957.4 -14.4Q1901.2 12 1828.2 12Z M2182.2 150V38.2H2253.4Q2279 38.2 2291.3 30.6Q2303.6 23 2310.6 4L2322.4 -26.8H2281.4L2092.8 -536H2246L2368.6 -167.2L2484.2 -536H2637.4L2431.4 50.8Q2412.8 104 2378.9 127Q2345 150 2284.2 150Z"/></symbol>
+    <symbol id="clucy-word-stop" viewBox="42 -726 2770.6 876"><path d="M2649.8 0V-153.2H2812.6V0Z"/></symbol>
+    <symbol id="clucy-pet" viewBox="36 48 120 146">
+      <rect x="62" y="158" width="22" height="26" rx="9" fill="#15140F" stroke="#4E4A41" stroke-width="1.5"/>
+      <rect x="108" y="158" width="22" height="26" rx="9" fill="#15140F" stroke="#4E4A41" stroke-width="1.5"/>
+      <ellipse cx="41" cy="124" rx="7" ry="13" fill="#15140F" stroke="#4E4A41" stroke-width="1.5"/>
+      <ellipse cx="151" cy="124" rx="7" ry="13" fill="#15140F" stroke="#4E4A41" stroke-width="1.5"/>
+      <rect x="44" y="52" width="104" height="112" rx="27" fill="#15140F" stroke="#4E4A41" stroke-width="1.5"/>
+      <rect x="52" y="58" width="88" height="10" rx="5" fill="#FFFFFF" opacity=".05"/>
+      <g transform="translate(60 72) scale(1.5)"><path d="M38 18V10H10v28h28v-8" fill="none" stroke="#F5F2EA" stroke-width="8"/></g>
+    </symbol>
+  </svg>
+
+  <!-- The 3D field behind the page, and its still version for browsers without WebGL -->
+  <canvas class="field" data-field aria-hidden="true"></canvas>
+  <div class="field-still" aria-hidden="true">
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <g fill="none" stroke="#8592FF" stroke-width="3" stroke-linecap="round">
+        <path d="M805 403A72 72 0 0 1 805 497" opacity=".95"/><path d="M838 375A116 116 0 0 1 838 525" opacity=".8"/>
+        <path d="M885 337A176 176 0 0 1 885 563" opacity=".65"/><path d="M955 280A262 262 0 0 1 955 620" opacity=".5"/>
+        <path d="M1060 196A390 390 0 0 1 1060 704" opacity=".35"/><path d="M1215 70A580 580 0 0 1 1215 830" opacity=".2"/>
+      </g>
+      <g transform="translate(560 330) scale(5)"><use href="#clucy-room" color="#F5F2EA" width="48" height="48"/><circle cx="38" cy="24" r="4" fill="#8592FF"/></g>
+    </svg>
+  </div>
+  <svg class="figure" data-figure viewBox="0 0 10 30" aria-hidden="true" focusable="false">
+    <circle cx="5" cy="3" r="2.4"/><path d="M2.4 7.2h5.2l.9 11h-1.6l-.6 11.6H3.9L3.3 18.2H1.6z"/>
+  </svg>
+
+  <!-- Labels pinned to points in the scene -->
+  <div class="labels" aria-hidden="true">
+    <span class="tag" data-anchor="facts:0"><b class="kind">code</b><span class="id">cts:door.clear_width.min</span> · Clucy Test Standard (fictional) · ed. 0.1 · CTS 3.1</span>
+    <span class="tag" data-anchor="facts:1"><b class="kind kind--amber">assumption</b>room use · stated, not guessed</span>
+    <span class="tag" data-anchor="facts:2"><b class="kind kind--plain">heuristic</b>corridor route · labelled as one</span>
+    <span class="tag" data-anchor="built:0"><b class="kind">wall</b>native, with its type</span>
+    <span class="tag" data-anchor="built:1"><b class="kind">door</b>hosted in its wall</span>
+    <span class="tag" data-anchor="built:2"><b class="kind">window</b>hosted · checked on read-back</span>
+    <span class="tag tag--tool" data-anchor="tools:0">Revit</span>
+    <span class="tag tag--tool" data-anchor="tools:1">Rhino</span>
+    <span class="tag tag--tool" data-anchor="tools:2">Grasshopper</span>
+    <span class="tag tag--tool" data-anchor="tools:3">Illustrator</span>
+  </div>
+
+  <header class="site-header">
+    <a class="lockup" href="#top" aria-label="Clucy, back to top">
+      <svg class="lockup-room" viewBox="0 0 48 48" aria-hidden="true"><use href="#clucy-room"/><circle class="brand-dot" cx="38" cy="24" r="4"/></svg>
+      <svg class="lockup-word" viewBox="0 0 2770.6 876" aria-hidden="true"><use href="#clucy-word"/><use class="brand-dot" href="#clucy-word-stop"/></svg>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#facts">How it works</a>
+      <a href="#demo">Demo</a>
+      <a class="nav-cta" href="#access">Early access</a>
+    </nav>
+  </header>
+
+  <nav class="rail" aria-label="Chapters">
+    <button type="button" data-rail="field" aria-label="Field"></button>
+    <button type="button" data-rail="facts" aria-label="Points are facts"></button>
+    <button type="button" data-rail="rules" aria-label="Lines are rules"></button>
+    <button type="button" data-rail="space" aria-label="Space is the result"></button>
+    <button type="button" data-rail="gate" aria-label="The gate" class="rail-gate"></button>
+    <button type="button" data-rail="built" aria-label="Built natively"></button>
+    <button type="button" data-rail="tools" aria-label="Beside your tools"></button>
+    <button type="button" data-rail="demo" aria-label="Demo video"></button>
+    <button type="button" data-rail="close" aria-label="Early access"></button>
+  </nav>
+
+  <main>
+    <section class="chapter chapter--hero" id="top" data-chapter="field">
+      <div class="panel panel--hero">
+        <p class="kicker">Clucy · AI design partner for architects</p>
+        <h1>Space, reasoned<span class="brand-dot-text">.</span></h1>
+        <p class="lead">Clucy works beside Revit, Rhino, Grasshopper and Illustrator. It reasons about space, shows the source of every number, and changes nothing in your model until you approve.</p>
+        <div class="actions">
+          <button type="button" class="btn btn--primary" data-goto="demo">Watch the demo</button>
+          <a class="btn" href="#access">Request early access</a>
+        </div>
+      </div>
+      <p class="scroll-hint" aria-hidden="true">Scroll</p>
+    </section>
+
+    <section class="chapter" id="facts" data-chapter="facts">
+      <div class="panel">
+        <p class="kicker">01 · Points are facts</p>
+        <h2>Every number has a source<span class="brand-dot-text">.</span></h2>
+        <p>Each value Clucy applies traces to an approved rule: its source, edition and page. Where no rule covers it, Clucy labels it an assumption and shows it as one.</p>
+        <ul class="kinds" aria-label="Every value carries one of five labels">
+          <li>code</li><li>reference</li><li>firm</li><li>heuristic</li><li>assumption</li>
+        </ul>
+        <p class="note">Rule cards on this page cite a fictional test standard, never a real book.</p>
+      </div>
+    </section>
+
+    <section class="chapter chapter--paper" id="rules" data-chapter="rules">
+      <div class="panel panel--paper">
+        <p class="kicker">02 · Lines are rules</p>
+        <h2>Design is data before it is geometry<span class="brand-dot-text">.</span></h2>
+        <p>Clucy plans as a checked model first: rooms, walls and doors as data, validated against the rules. Only then does deterministic code build anything in Rhino or Revit.</p>
+      </div>
+    </section>
+
+    <section class="chapter chapter--paper chapter--long" id="space" data-chapter="space">
+      <div class="panel panel--paper">
+        <p class="kicker">03 · Space is the result</p>
+        <h2>It reads a plan the way you walk it<span class="brand-dot-text">.</span></h2>
+        <p>The spatial layer measures how a plan works, on your own model.</p>
+        <ol class="beats">
+          <li data-beat><b>Rooms</b><span>Every room as a measured field.</span></li>
+          <li data-beat><b>Adjacency</b><span>Which rooms connect, and through which doors.</span></li>
+          <li data-beat><b>Circulation</b><span>The routes people take from the entrance.</span></li>
+          <li data-beat><b>Daylight and view</b><span>Where light falls, and what you see from where you stand.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="chapter" id="gate" data-chapter="gate">
+      <div class="panel panel--gate">
+        <p class="kicker kicker--amber">04 · The gate</p>
+        <h2>Nothing moves without you<span class="amber-dot-text">.</span></h2>
+        <p>Clucy shows the plan, every value with its source and every assumption it made. Nothing touches your Rhino or Revit file until you approve, and each approved change is one undo step.</p>
+        <div class="gate-row">
+          <div class="gate-card" role="group" aria-label="Example plan waiting for approval">
+            <p class="gate-status"><i></i>Waiting for you</p>
+            <p class="gate-title">Option A · four rooms, four doors</p>
+            <dl>
+              <div><dt>Door width</dt><dd>rule · code</dd></div>
+              <div><dt>Wall type</dt><dd>rule · firm</dd></div>
+              <div><dt>Corridor route</dt><dd>assumption</dd></div>
+            </dl>
+            <div class="gate-actions">
+              <button type="button" class="btn btn--primary" data-goto="built">Approve</button>
+              <button type="button" class="btn" data-goto="rules">Change</button>
+            </div>
+          </div>
+          <svg class="pet" data-pet viewBox="36 48 120 146" role="img" aria-label="Tile, the Clucy pet, waiting">
+            <use href="#clucy-pet"/>
+            <g data-pet-eye><circle class="pet-eye" cx="117" cy="108" r="6"/><circle cx="115" cy="106" r="1.7" fill="#FFFFFF" opacity=".9"/></g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="built" data-chapter="built">
+      <div class="panel">
+        <p class="kicker">05 · Built natively</p>
+        <h2>Real walls. Real doors<span class="brand-dot-text">.</span></h2>
+        <p>An approved plan becomes native Revit walls with their types, with doors and windows hosted in them. Clucy reads the model back and checks it again.</p>
+        <p class="note">Structural values are preliminary, engineer to confirm.</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="tools" data-chapter="tools">
+      <div class="panel">
+        <p class="kicker">06 · Beside your tools</p>
+        <h2>Inside the tools you already use<span class="brand-dot-text">.</span></h2>
+        <p>From a panel beside your work, Clucy models, lays out floors, produces drawing sheets, builds presentation sheets and critiques plans.</p>
+      </div>
+    </section>
+
+    <section class="chapter chapter--demo" id="demo" data-chapter="demo">
+      <div class="panel panel--wide">
+        <p class="kicker">07 · Watch it work</p>
+        <h2>Clucy on a working prototype<span class="brand-dot-text">.</span></h2>
+        <div class="video" data-video-id="s0YTZqHmQUc" data-video-title="Clucy demo">
+          <button type="button" class="video-poster" data-video-play aria-label="Play the Clucy demo video (loads YouTube)">
+            <svg class="video-mark" viewBox="0 0 72 48" aria-hidden="true">
+              <g fill="none" stroke="#8592FF" stroke-width="3" stroke-linecap="round">
+                <path d="M43.36 19.5A7 7 0 0 1 43.36 28.5"/><path d="M47.96 15.64A13 13 0 0 1 47.96 32.36" opacity=".65"/><path d="M52.55 11.79A19 19 0 0 1 52.55 36.21" opacity=".35"/>
+              </g>
+              <use href="#clucy-room" color="#F5F2EA" width="48" height="48"/><circle cx="38" cy="24" r="4" fill="#8592FF"/>
+            </svg>
+            <span class="video-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>Play the demo</span>
+            <span class="video-meta">Plays from YouTube. Nothing loads until you press play.</span>
+          </button>
+        </div>
+        <p class="note"><a href="https://youtu.be/s0YTZqHmQUc" target="_blank" rel="noopener">Open the demo on YouTube</a></p>
+      </div>
+    </section>
+
+    <section class="chapter chapter--close" id="access" data-chapter="close">
+      <div class="panel panel--close">
+        <div class="logo-reveal" data-logo-reveal>
+          <svg class="reveal-room" viewBox="0 0 48 48" aria-hidden="true">
+            <path class="reveal-walls" d="M38 18V10H10v28h28v-8" pathLength="1"/>
+            <circle class="reveal-dot" cx="38" cy="24" r="4"/>
+          </svg>
+          <svg class="reveal-word" viewBox="0 0 2770.6 876" role="img" aria-label="Clucy"><use href="#clucy-word"/><use class="brand-dot" href="#clucy-word-stop"/></svg>
+        </div>
+        <h2>Points are facts. Lines are rules. Space is the result<span class="brand-dot-text">.</span></h2>
+        <p>Clucy is a working prototype.</p>
+        <div class="actions">
+          <button type="button" class="btn btn--primary" data-access aria-controls="access-note" aria-expanded="false">Request early access</button>
+        </div>
+        <p class="note" id="access-note" role="status" hidden>Early access requests open soon. Check back here.</p>
+      </div>
+      <footer class="site-footer">
+        <svg class="pet pet--small" data-pet viewBox="36 48 120 146" aria-hidden="true">
+          <use href="#clucy-pet"/>
+          <g data-pet-eye><circle class="pet-eye" cx="117" cy="108" r="6"/><circle cx="115" cy="106" r="1.7" fill="#FFFFFF" opacity=".9"/></g>
+        </svg>
+        <div>
+          <p>© 2026 Clucy. Clucy never certifies compliance; structural values are preliminary, engineer to confirm.</p>
+          <p>Plans on this page are illustrative. Revit is a trademark of Autodesk; Rhino and Grasshopper of Robert McNeel &amp; Associates; Illustrator of Adobe.</p>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

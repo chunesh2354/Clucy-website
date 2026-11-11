@@ -1,0 +1,494 @@
+/* The scroll story. Each chapter is a tall section; its panel stays put (sticky) while the scene behind it changes.
+   Panels sit on a solid ground of their own so body text never sits on moving points. */
+main {
+  position: relative;
+  z-index: 2;
+}
+.chapter {
+  position: relative;
+  min-height: 210vh;
+  padding: 0 max(var(--margin), env(safe-area-inset-right, 0px)) 0 max(var(--margin), env(safe-area-inset-left, 0px));
+}
+.chapter--hero {
+  min-height: 175vh;
+}
+.chapter--long {
+  min-height: 340vh;
+}
+.chapter--demo {
+  min-height: 200vh;
+}
+.chapter--close {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 64px;
+  padding-top: 18vh;
+  padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+}
+
+.panel {
+  position: sticky;
+  top: calc(var(--header-h) + 6vh);
+  max-width: 470px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px 26px 26px;
+  border-radius: 16px;
+  background: var(--ink);
+}
+.panel h2 {
+  font-size: var(--t-m);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+.panel p:not(.kicker):not(.note) {
+  color: var(--stone-on-ink);
+}
+.panel--paper {
+  background: var(--paper);
+  color: var(--ink);
+}
+.panel--paper .kicker,
+.panel--paper .brand-dot-text {
+  color: var(--ultra);
+}
+.panel--paper p:not(.kicker):not(.note) {
+  color: var(--stone);
+}
+
+/* hero */
+.panel--hero {
+  top: auto;
+  position: sticky;
+  max-width: 820px;
+  margin-top: 46vh;
+  padding: 0;
+  background: transparent;
+  gap: 20px;
+}
+.panel--hero h1 {
+  font-size: var(--t-mega);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  max-width: 9ch;
+}
+.panel--hero .lead {
+  font-size: var(--t-lead);
+  line-height: 1.45;
+  max-width: 40ch;
+  color: var(--paper-on-ink);
+  background: var(--ink);
+  border-radius: 12px;
+  padding: 2px 0;
+}
+.panel--hero .kicker,
+.panel--hero h1,
+.panel--hero .actions {
+  width: fit-content;
+  background: var(--ink);
+  border-radius: 12px;
+}
+.panel--hero .kicker {
+  padding: 4px 8px;
+  margin-left: -8px;
+}
+.scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 75vh;
+  translate: -50% 0;
+  font: 500 var(--t-kicker) / 16px var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stone-on-ink);
+}
+
+/* points are facts */
+.kinds {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.kinds li {
+  font: 500 11px / 16px var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: var(--graphite);
+  color: var(--paper-on-ink);
+}
+.kinds li:last-child {
+  background: var(--amber-on-ink);
+  color: var(--ink);
+}
+
+/* space: four beats */
+.beats {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+  border-top: 1px solid var(--rule-on-paper);
+}
+.beats li {
+  display: grid;
+  gap: 2px;
+  padding: 10px 0 10px 20px;
+  position: relative;
+  border-bottom: 1px solid var(--rule-on-paper);
+  color: var(--stone);
+  transition: color var(--t-panel) var(--settle);
+}
+.beats li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 17px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--rule-on-paper);
+  transition: background var(--t-panel) var(--settle);
+}
+.beats li b {
+  font-weight: 500;
+  color: var(--ink);
+}
+.beats li[aria-current="true"] {
+  color: var(--ink);
+}
+.beats li[aria-current="true"]::before {
+  background: var(--ultra);
+}
+
+/* the gate */
+.panel--gate {
+  max-width: 560px;
+}
+.gate-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin-top: 6px;
+}
+.gate-card {
+  flex: 1;
+  min-width: 0;
+  background: var(--paper-on-ink);
+  color: var(--ink);
+  border-radius: 12px;
+  padding: 14px 16px 16px;
+}
+.gate-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 500 11px / 16px var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.gate-status i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+.gate-title {
+  margin-top: 6px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+}
+.gate-card dl {
+  margin: 10px 0 0;
+}
+.gate-card dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+  border-top: 1px solid var(--rule-on-paper);
+  font: 400 12px / 16px var(--mono);
+}
+.gate-card dt {
+  color: var(--stone);
+}
+.gate-card dd {
+  margin: 0;
+}
+.gate-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+.gate-actions .btn {
+  flex: 1;
+  justify-content: center;
+  padding: 10px 14px;
+}
+.gate-actions .btn--primary {
+  background: var(--ink);
+  color: var(--paper-on-ink);
+}
+.gate-actions .btn:not(.btn--primary) {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* Tile, the pet */
+.pet {
+  width: 92px;
+  flex: none;
+  overflow: visible;
+}
+.pet--small {
+  width: 56px;
+}
+.pet-eye {
+  fill: var(--ultra-on-ink);
+  transition: fill var(--t-panel) var(--settle);
+}
+.pet.is-waiting .pet-eye {
+  fill: var(--amber-on-ink);
+}
+.pet.is-jumping {
+  animation: pet-jump 840ms var(--settle) 1;
+}
+@keyframes pet-jump {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  35% {
+    transform: translateY(-16px);
+  }
+}
+
+/* demo video */
+.panel--wide {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--ultra);
+}
+.video-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 24px;
+  background: var(--ultra);
+  color: var(--paper);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.video-mark {
+  width: min(180px, 34%);
+  height: auto;
+}
+.video-mark use {
+  color: var(--paper);
+}
+.video-mark path {
+  stroke: var(--paper);
+}
+.video-mark circle {
+  fill: var(--paper);
+}
+.video-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px 12px 16px;
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font: 500 15px / 20px var(--sans);
+  transition: background var(--t-micro) var(--settle);
+}
+.video-play svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+.video-poster:hover .video-play {
+  background: var(--paper-on-ink);
+}
+.video-meta {
+  font: 400 12px / 16px var(--mono);
+  color: var(--paper);
+}
+.video-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* close: the brand's logo reveal */
+.panel--close {
+  position: relative;
+  top: auto;
+  max-width: 760px;
+  margin: 0 auto;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  background: var(--ink);
+}
+.panel--close h2 {
+  font-size: var(--t-m);
+}
+.panel--close .actions {
+  justify-content: center;
+}
+.logo-reveal {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+.reveal-room {
+  width: 84px;
+  height: 84px;
+  overflow: visible;
+}
+.reveal-walls {
+  fill: none;
+  stroke: var(--paper-on-ink);
+  stroke-width: 8;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.reveal-dot {
+  fill: var(--ultra-on-ink);
+  opacity: 0;
+}
+.reveal-word {
+  height: 60px;
+  width: 190px;
+  color: var(--paper-on-ink);
+  opacity: 0;
+  translate: -8px 0;
+}
+.logo-reveal.is-revealed .reveal-dot {
+  opacity: 1;
+  transition: opacity var(--t-micro) var(--settle);
+}
+.logo-reveal.is-revealed .reveal-walls {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset var(--t-hero) var(--settle) var(--t-micro);
+}
+.logo-reveal.is-revealed .reveal-word {
+  opacity: 1;
+  translate: 0 0;
+  transition: opacity 720ms var(--settle) 600ms, translate 720ms var(--settle) 600ms;
+}
+.logo-reveal.is-instant * {
+  transition: none !important;
+}
+
+.site-footer {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  max-width: 1312px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule-on-ink);
+  font-size: var(--t-small);
+  line-height: 20px;
+  color: var(--stone-on-ink);
+  background: var(--ink);
+}
+.site-footer div {
+  display: grid;
+  gap: 4px;
+}
+
+/* phones: panels dock at the bottom of the screen, the picture sits above them */
+@media (max-width: 760px) {
+  .chapter {
+    min-height: 190vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .chapter--long {
+    min-height: 300vh;
+  }
+  .panel {
+    position: sticky;
+    top: auto;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    margin-top: auto;
+    margin-bottom: 12px;
+    padding: 16px 16px 18px;
+    gap: 8px;
+  }
+  .panel p:not(.kicker):not(.note) {
+    font-size: 14px;
+    line-height: 21px;
+  }
+  .panel--hero {
+    position: relative;
+    bottom: auto;
+    margin-top: 42vh;
+    padding: 0;
+  }
+  .panel--close {
+    position: relative;
+    bottom: auto;
+    margin-top: 0;
+  }
+  .beats li span {
+    display: none;
+  }
+  .beats li[aria-current="true"] span {
+    display: block;
+  }
+  .beats li {
+    padding: 6px 0 6px 20px;
+  }
+  .beats li::before {
+    top: 13px;
+  }
+  .gate-card dl {
+    display: none;
+  }
+  .gate-row .pet {
+    width: 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,42 @@
+/* Clucy brand tokens (brand-rules.json v1.0).
+   Grounds: ink, paper, ultramarine only. Never mid-tones, gradients, shadows, glows or outlines. */
+:root {
+  --ink: #15140f;
+  --paper: #f7f4ec;
+  --paper-on-ink: #f5f2ea;
+  --ultra: #2b3bd9;
+  --ultra-on-ink: #8592ff;
+  --amber: #a35f00;
+  --amber-on-ink: #e3a13a;
+  --stone: #645f57;
+  --stone-on-ink: #b3ada1;
+  --graphite: #3b3830;
+  --surface: #fffdf8;
+  --rule-on-ink: rgba(245, 242, 234, 0.14);
+  --rule-on-paper: rgba(21, 20, 15, 0.14);
+
+  --sans: "Geist", "Segoe UI", system-ui, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  /* type scale, px: mega 160/140, xl 96/92, l 64/64, m 40/44, s 24/30, lead 22/32, body 15/24, small 13/20, kicker 12/16 */
+  --t-mega: clamp(56px, 9.6vw, 140px);
+  --t-m: clamp(30px, 3.2vw, 40px);
+  --t-s: 24px;
+  --t-lead: clamp(18px, 1.6vw, 22px);
+  --t-body: 15px;
+  --t-small: 13px;
+  --t-kicker: 12px;
+
+  /* grid: 12 columns, 64 px margins, 24 px gutters, 8 px base */
+  --margin: clamp(16px, 4.5vw, 64px);
+  --gutter: 24px;
+  --header-h: 72px;
+
+  /* motion */
+  --settle: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-micro: 120ms;
+  --t-panel: 240ms;
+  --t-hero: 480ms;
+
+  color-scheme: dark;
+}
